@@ -82,14 +82,17 @@ export function useReactMediaRecorder({
   const [error, setError] = useState<keyof typeof RecorderErrors>("NONE");
 
   useEffect(() => {
-    try{
-    const setup = async () => {
-      await register(await connect());
-    setup();
-    }
-    catch (e){
-      console.log(e.message)
-    }
+      const setup = async () => {
+        try {
+          await register(await connect());
+          await setup();
+        }
+        catch (e) {
+          console.log(e)
+
+        }
+      }
+
   }, []);
 
   const getMediaStream = useCallback(async () => {
