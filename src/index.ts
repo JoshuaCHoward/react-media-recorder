@@ -83,7 +83,11 @@ export function useReactMediaRecorder({
 
   useEffect(() => {
     const setup = async () => {
+      try {
       await register(await connect());
+      }
+      catch (e){
+        console.log(e.message)
     };
     setup();
   }, []);
